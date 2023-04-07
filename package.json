@@ -1,0 +1,34 @@
+{
+  "name": "arq-protocols",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start:stop-and-wait:client": "tsx ./src/stop-and-wait/example/client/index.ts",
+    "start:stop-and-wait:server": "tsx ./src/stop-and-wait/example/server.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KrisKnez/arq-protocols.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/KrisKnez/arq-protocols/issues"
+  },
+  "homepage": "https://github.com/KrisKnez/arq-protocols#readme",
+  "devDependencies": {
+    "@types/node": "^18.15.11",
+    "tsx": "^3.12.6"
+  },
+  "dependencies": {
+    "@types/command-line-args": "^5.2.0",
+    "@types/validator": "^13.7.14",
+    "command-line-args": "^5.2.1",
+    "commander": "^10.0.0",
+    "p-event": "^5.0.1",
+    "validator": "^13.9.0",
+    "zod": "^3.21.4"
+  }
+}
