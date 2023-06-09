@@ -5,8 +5,10 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start:stop-and-wait:client": "tsx ./src/stop-and-wait/example/client/index.ts",
-    "start:stop-and-wait:server": "tsx ./src/stop-and-wait/example/server.ts"
+    "raw-without-arq:server": "tsx apps/raw-without-arq/server",
+    "raw-without-arq:client": "tsx apps/raw-without-arq/client",
+    "ping-pong:server": "tsx apps/ping-pong-udp/server",
+    "ping-pong:client": "tsx apps/ping-pong-udp/client"
   },
   "repository": {
     "type": "git",
@@ -28,6 +30,7 @@
     "command-line-args": "^5.2.1",
     "commander": "^10.0.0",
     "p-event": "^5.0.1",
+    "readline": "^1.3.0",
     "validator": "^13.9.0",
     "zod": "^3.21.4"
   }
