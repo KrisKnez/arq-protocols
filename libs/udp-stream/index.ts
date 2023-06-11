@@ -63,11 +63,14 @@ export class UDPStreamHandler
   connections: Map<string, UDPStreamReference>;
   timeoutDuration: number;
 
+  messageHandlerFunction: (msg: Buffer, rinfo: dgram.RemoteInfo) => void
+
   closeStream(key: UDPStreamKey) {
     const connection = this.connections.get(key);
     if (connection) {
       clearTimeout(connection.timeout);
       this.connections.delete(key);
+      this.server.removeListener("message", this.messageHandlerFunction)
       // console.log(`timeout ${connection.address}:${connection.port}`);
     }
   }
@@ -120,7 +123,7 @@ export class UDPStreamHandler
     this.connections = new Map();
     this.timeoutDuration = timeoutDuration;
 
-    this.server.on("message", (msg: Buffer, rinfo: dgram.RemoteInfo) => {
+    this.messageHandlerFunction = (msg: Buffer, rinfo: dgram.RemoteInfo) => {
       // console.log(`recv ${rinfo.address}:${rinfo.port}:`, msg.toString());
 
       const key = this.generateKey(rinfo);
@@ -130,6 +133,8 @@ export class UDPStreamHandler
         const stream = this.createStream(rinfo);
         stream?.stream.push(msg);
       }
-    });
+    }
+
+    this.server.on("message", this.messageHandlerFunction);
   }
 }
